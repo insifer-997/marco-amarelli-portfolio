@@ -74,7 +74,7 @@ body:not(.lang-en) .en{display:none;}
 main{ padding-left:44px; }
 .wrap{ max-width:760px; margin:0 auto; padding:0 28px; }
 section{ border-top:1px solid var(--line); }
-.section-label{ font-size:12px; color:var(--text-dim); letter-spacing:.04em; padding-top:56px; margin-bottom:36px; }
+.section-label{ font-family:'Fraunces',serif; font-weight:500; font-size:32px; color:var(--text); letter-spacing:-.01em; padding-top:56px; margin-bottom:40px; text-transform:none; }
 
 .hero{ position:relative; min-height:100vh; display:flex; align-items:flex-end; border-top:none; }
 .hero-bg{ position:absolute; inset:0; z-index:0; }
@@ -101,17 +101,6 @@ section{ border-top:1px solid var(--line); }
 .reel{ margin-bottom:36px; }
 .reel iframe{ width:100%; border-radius:4px; border:1px solid var(--panel-edge); }
 
-/* embed gate (cookie consent) */
-.embed-gate{
-  border:1px dashed var(--panel-edge); border-radius:4px; min-height:120px;
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
-  padding:24px; text-align:center; color:var(--text-dim); font-size:13px;
-}
-.embed-gate button{
-  font-family:'IBM Plex Mono',monospace; font-size:12px; color:#16151A; background:var(--amber);
-  border:none; padding:8px 16px; border-radius:16px; cursor:pointer;
-}
-
 /* --- services --- */
 .services{ padding:90px 0 110px; }
 .services-group{ margin-bottom:64px; }
@@ -126,6 +115,26 @@ section{ border-top:1px solid var(--line); }
 .service-block li{ font-size:14px; line-height:1.5; color:var(--text); padding-left:14px; position:relative; }
 .service-block li::before{ content:'—'; position:absolute; left:0; color:var(--teal); }
 .service-block li b{ font-weight:600; color:var(--text); }
+
+/* --- service icons (hover-interactive) --- */
+.sb-head{ display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+.sb-head h4{ margin-bottom:0; }
+.svc-icon{ width:38px; height:38px; flex:none; }
+.svc-icon .eqbar{ transform-box:fill-box; transform-origin:bottom; }
+.service-block:hover .svc-icon .eqbar{ animation:eqbounce .9s ease-in-out infinite; }
+.service-block:hover .svc-icon .eqbar:nth-child(2){ animation-delay:.15s; }
+.service-block:hover .svc-icon .eqbar:nth-child(3){ animation-delay:.3s; }
+@keyframes eqbounce{ 0%,100%{ transform:scaleY(.55); } 50%{ transform:scaleY(1); } }
+.svc-icon .ring{ transform-box:fill-box; transform-origin:center; }
+.service-block:hover .svc-icon .ring.r1{ animation:ripple 1.4s ease-out infinite; }
+.service-block:hover .svc-icon .ring.r2{ animation:ripple 1.4s ease-out infinite; animation-delay:.35s; }
+@keyframes ripple{ 0%{ transform:scale(.7); opacity:.9; } 100%{ transform:scale(1.15); opacity:0; } }
+.svc-icon .knob{ transform-box:fill-box; }
+.service-block:hover .svc-icon .knob{ animation:fadermove 1.6s ease-in-out infinite; }
+@keyframes fadermove{ 0%,100%{ transform:translateY(6px); } 50%{ transform:translateY(-6px); } }
+.svc-icon .wire{ stroke-dasharray:3 3; }
+.service-block:hover .svc-icon .wire{ animation:wireflow 1s linear infinite; }
+@keyframes wireflow{ to{ stroke-dashoffset:-12; } }
 
 /* --- projects timeline --- */
 .timeline{ padding:60px 0 120px; }
@@ -226,8 +235,8 @@ footer .place{ color:var(--text-dim); font-size:13px; margin-top:18px; }
 
 <div class="cookiebar hidden" id="cookiebar">
   <p>
-    <span class="it">Questo sito utilizza contenuti di terze parti (player audio ReelCrafter e Spotify, embed di gioco itch.io) che possono impostare cookie tecnici e di terze parti. Puoi accettarli tutti oppure limitarti a quelli strettamente necessari al funzionamento del sito.</span>
-    <span class="en">This site uses third-party content (ReelCrafter and Spotify audio players, itch.io game embeds) that may set technical and third-party cookies. You can accept all of them or limit consent to what's strictly necessary for the site to work.</span>
+    <span class="it">Questo sito include contenuti di terze parti (player audio ReelCrafter e Spotify, embed di gioco itch.io) che possono impostare cookie tecnici e di terze parti, necessari per mostrare quei contenuti.</span>
+    <span class="en">This site includes third-party content (ReelCrafter and Spotify audio players, itch.io game embeds) that may set technical and third-party cookies, required to display that content.</span>
   </p>
   <div class="actions">
     <button class="accept-essential" onclick="cookieChoice('essential')"><span class="it">Solo necessari</span><span class="en">Essential only</span></button>
@@ -344,24 +353,15 @@ function setLang(l){
   try{ if(localStorage.getItem('ma_lang') === 'en'){ setLang('en'); } }catch(e){}
 })();
 
-/* --- cookie consent + embed gating --- */
-function loadGate(el){
-  const html = el.getAttribute('data-embed');
-  el.outerHTML = html;
-}
-function loadAllGates(){
-  document.querySelectorAll('.embed-gate').forEach(loadGate);
-}
+/* --- cookie notice (informational; does not block third-party embeds) --- */
 function cookieChoice(choice){
   try{ localStorage.setItem('ma_cookie_consent', choice); }catch(e){}
   document.getElementById('cookiebar').classList.add('hidden');
-  if(choice === 'all'){ loadAllGates(); }
 }
 (function(){
   let consent = null;
   try{ consent = localStorage.getItem('ma_cookie_consent'); }catch(e){}
-  if(consent === 'all'){ loadAllGates(); }
-  else if(consent !== 'essential'){
+  if(!consent){
     document.addEventListener('DOMContentLoaded', function(){
       document.getElementById('cookiebar').classList.remove('hidden');
     });

@@ -74,7 +74,7 @@ body:not(.lang-en) .en{display:none;}
 main{ padding-left:44px; }
 .wrap{ max-width:760px; margin:0 auto; padding:0 28px; }
 section{ border-top:1px solid var(--line); }
-.section-label{ font-size:12px; color:var(--text-dim); letter-spacing:.04em; padding-top:56px; margin-bottom:36px; }
+.section-label{ font-family:'Fraunces',serif; font-weight:500; font-size:32px; color:var(--text); letter-spacing:-.01em; padding-top:56px; margin-bottom:40px; text-transform:none; }
 
 .hero{ position:relative; min-height:100vh; display:flex; align-items:flex-end; border-top:none; }
 .hero-bg{ position:absolute; inset:0; z-index:0; }
@@ -101,17 +101,6 @@ section{ border-top:1px solid var(--line); }
 .reel{ margin-bottom:36px; }
 .reel iframe{ width:100%; border-radius:4px; border:1px solid var(--panel-edge); }
 
-/* embed gate (cookie consent) */
-.embed-gate{
-  border:1px dashed var(--panel-edge); border-radius:4px; min-height:120px;
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
-  padding:24px; text-align:center; color:var(--text-dim); font-size:13px;
-}
-.embed-gate button{
-  font-family:'IBM Plex Mono',monospace; font-size:12px; color:#16151A; background:var(--amber);
-  border:none; padding:8px 16px; border-radius:16px; cursor:pointer;
-}
-
 /* --- services --- */
 .services{ padding:90px 0 110px; }
 .services-group{ margin-bottom:64px; }
@@ -126,6 +115,26 @@ section{ border-top:1px solid var(--line); }
 .service-block li{ font-size:14px; line-height:1.5; color:var(--text); padding-left:14px; position:relative; }
 .service-block li::before{ content:'—'; position:absolute; left:0; color:var(--teal); }
 .service-block li b{ font-weight:600; color:var(--text); }
+
+/* --- service icons (hover-interactive) --- */
+.sb-head{ display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+.sb-head h4{ margin-bottom:0; }
+.svc-icon{ width:38px; height:38px; flex:none; }
+.svc-icon .eqbar{ transform-box:fill-box; transform-origin:bottom; }
+.service-block:hover .svc-icon .eqbar{ animation:eqbounce .9s ease-in-out infinite; }
+.service-block:hover .svc-icon .eqbar:nth-child(2){ animation-delay:.15s; }
+.service-block:hover .svc-icon .eqbar:nth-child(3){ animation-delay:.3s; }
+@keyframes eqbounce{ 0%,100%{ transform:scaleY(.55); } 50%{ transform:scaleY(1); } }
+.svc-icon .ring{ transform-box:fill-box; transform-origin:center; }
+.service-block:hover .svc-icon .ring.r1{ animation:ripple 1.4s ease-out infinite; }
+.service-block:hover .svc-icon .ring.r2{ animation:ripple 1.4s ease-out infinite; animation-delay:.35s; }
+@keyframes ripple{ 0%{ transform:scale(.7); opacity:.9; } 100%{ transform:scale(1.15); opacity:0; } }
+.svc-icon .knob{ transform-box:fill-box; }
+.service-block:hover .svc-icon .knob{ animation:fadermove 1.6s ease-in-out infinite; }
+@keyframes fadermove{ 0%,100%{ transform:translateY(6px); } 50%{ transform:translateY(-6px); } }
+.svc-icon .wire{ stroke-dasharray:3 3; }
+.service-block:hover .svc-icon .wire{ animation:wireflow 1s linear infinite; }
+@keyframes wireflow{ to{ stroke-dashoffset:-12; } }
 
 /* --- projects timeline --- */
 .timeline{ padding:60px 0 120px; }
@@ -259,22 +268,10 @@ footer .place{ color:var(--text-dim); font-size:13px; margin-top:18px; }
   <section class="listen">
     <div class="wrap">
       <div class="section-label mono"><span class="it">ASCOLTA</span><span class="en">LISTEN</span></div>
-      <div class="reel"><div class="embed-gate" data-embed="<iframe height=&quot;400&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://play.reelcrafter.com/embed/8c95b046-603b-4324-ad9a-bd4b38d5b900&quot;></iframe>">
-  <span><span class="it">Reel</span><span class="en">Reel</span></span>
-  <button onclick="loadGate(this.parentElement)"><span class="it">Mostra contenuto</span><span class="en">Show content</span></button>
-</div></div>
-      <div class="reel"><div class="embed-gate" data-embed="<iframe height=&quot;400&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://play.reelcrafter.com/embed/ff13cc44-3de3-4923-afff-c621493eaf59&quot;></iframe>">
-  <span><span class="it">Reel</span><span class="en">Reel</span></span>
-  <button onclick="loadGate(this.parentElement)"><span class="it">Mostra contenuto</span><span class="en">Show content</span></button>
-</div></div>
-      <div class="reel"><div class="embed-gate" data-embed="<iframe height=&quot;400&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://play.reelcrafter.com/embed/6264f532-2979-4968-a9d0-465010484fb3&quot;></iframe>">
-  <span><span class="it">Reel</span><span class="en">Reel</span></span>
-  <button onclick="loadGate(this.parentElement)"><span class="it">Mostra contenuto</span><span class="en">Show content</span></button>
-</div></div>
-      <div class="reel"><div class="embed-gate" data-embed="<iframe style=&quot;border-radius:4px&quot; src=&quot;https://open.spotify.com/embed/artist/3LI44LLJGKDDcIXnAu7l9F?utm_source=generator&quot; height=&quot;352&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; allow=&quot;autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture&quot; loading=&quot;lazy&quot;></iframe>">
-  <span><span class="it">Alma Nox — Spotify</span><span class="en">Alma Nox — Spotify</span></span>
-  <button onclick="loadGate(this.parentElement)"><span class="it">Mostra contenuto</span><span class="en">Show content</span></button>
-</div></div>
+      <div class="reel"><iframe height="400" scrolling="no" frameborder="no" src="https://play.reelcrafter.com/embed/8c95b046-603b-4324-ad9a-bd4b38d5b900"></iframe></div>
+      <div class="reel"><iframe height="400" scrolling="no" frameborder="no" src="https://play.reelcrafter.com/embed/ff13cc44-3de3-4923-afff-c621493eaf59"></iframe></div>
+      <div class="reel"><iframe height="400" scrolling="no" frameborder="no" src="https://play.reelcrafter.com/embed/6264f532-2979-4968-a9d0-465010484fb3"></iframe></div>
+      <div class="reel"><iframe style="border-radius:4px" src="https://open.spotify.com/embed/artist/3LI44LLJGKDDcIXnAu7l9F?utm_source=generator" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
     </div>
   </section>
 
@@ -284,15 +281,35 @@ footer .place{ color:var(--text-dim); font-size:13px; margin-top:18px; }
       <div class="services-group">
         <div class="group-title">CINEMA</div>
         <div class="service-block">
-      <h4><span class="it">MUSICA</span><span class="en">MUSIC</span></h4>
+      <div class="sb-head">
+        <svg class="svc-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <rect class="eqbar" x="6" y="18" width="6" height="16" rx="1" fill="var(--amber)"/>
+  <rect class="eqbar" x="17" y="10" width="6" height="24" rx="1" fill="var(--amber)"/>
+  <rect class="eqbar" x="28" y="22" width="6" height="12" rx="1" fill="var(--amber)"/>
+</svg>
+        <h4><span class="it">MUSICA</span><span class="en">MUSIC</span></h4>
+      </div>
       <p class='it'>Considero la musica una parte integrante del processo narrativo. Più che accompagnare semplicemente un'immagine, il mio obiettivo è costruire un linguaggio musicale che sostenga l'identità emotiva e narrativa di ogni progetto.</p><p class='it'>Il mio lavoro si muove tra strumenti acustici, scrittura neoclassica, texture elettroniche e sound sperimentale, permettendo alla colonna sonora di adattarsi al mondo e all'atmosfera della storia. Mi interessano in particolare gli spazi tra ciò che si vede e ciò che si sente — uso misura, texture e motivi in evoluzione per creare emozione senza doverla sempre dichiarare esplicitamente.</p><p class='it'>Ogni progetto richiede un proprio vocabolario musicale. Il mio obiettivo è trovarlo insieme al regista, costruendo una colonna sonora che risulti inseparabile dal film.</p><p class='en'>I approach music as an integral part of the storytelling process. Rather than simply accompanying an image, I aim to create a musical language that supports the emotional and narrative identity of each project.</p><p class='en'>My work moves between acoustic instruments, neoclassical writing, electronic textures and experimental sound, allowing the score to adapt to the world and atmosphere of the story. I am particularly interested in the spaces between what is seen and what is felt — using restraint, texture and evolving motifs to create emotion without always spelling it out.</p><p class='en'>Every project calls for its own musical vocabulary. My goal is to find it together with the director, building a score that feels inseparable from the film.</p>
       
     </div><div class="service-block">
-      <h4>SOUND DESIGN</h4>
+      <div class="sb-head">
+        <svg class="svc-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <circle cx="20" cy="20" r="3" fill="var(--teal)"/>
+  <circle class="ring r1" cx="20" cy="20" r="9" fill="none" stroke="var(--teal)" stroke-width="1.5"/>
+  <circle class="ring r2" cx="20" cy="20" r="15" fill="none" stroke="var(--teal)" stroke-width="1.5" opacity="0.6"/>
+</svg>
+        <h4>SOUND DESIGN</h4>
+      </div>
       <p class='it'>Per me il sound design è un ulteriore livello di narrazione. Può far sentire vivo uno spazio, rivelare ciò che resta fuori campo, o cambiare completamente il modo in cui una scena viene percepita.</p><p class='it'>Lavoro con field recording, foley, fonti acustiche, sintesi e manipolazione sonora per costruire mondi sonori organici e allo stesso tempo distintivi. Sono particolarmente attratto dal contrasto tra suoni familiari e non familiari — prendere qualcosa di riconoscibile e trasformarlo in qualcosa di inquietante, intimo o inaspettato.</p><p class='it'>Più che trattare il suono come una raccolta di singoli effetti, affronto ogni progetto come un ambiente sonoro completo, in cui atmosfera, movimento, dettaglio e silenzio contribuiscono tutti a costruire l'esperienza dello spettatore.</p><p class='en'>For me, sound design is another layer of storytelling. It can make a space feel alive, reveal what remains outside the frame, or completely change the way a scene is perceived.</p><p class='en'>I work with field recordings, foley, acoustic sources, synthesis and sound manipulation to build sonic worlds that feel both organic and distinctive. I am particularly drawn to the contrast between familiar and unfamiliar sounds — taking something recognizable and transforming it into something unsettling, intimate or unexpected.</p><p class='en'>Rather than treating sound as a collection of individual effects, I approach each project as a complete sonic environment, where ambience, movement, detail and silence all have a role in shaping the audience's experience.</p>
       
     </div><div class="service-block">
-      <h4><span class="it">POST-PRODUZIONE AUDIO</span><span class="en">AUDIO POST-PRODUCTION</span></h4>
+      <div class="sb-head">
+        <svg class="svc-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <line x1="20" y1="4" x2="20" y2="36" stroke="var(--panel-edge)" stroke-width="2"/>
+  <rect class="knob" x="12" y="20" width="16" height="7" rx="2" fill="var(--amber)"/>
+</svg>
+        <h4><span class="it">POST-PRODUZIONE AUDIO</span><span class="en">AUDIO POST-PRODUCTION</span></h4>
+      </div>
       <p class='it'>Servizi completi di post-produzione audio, dal montaggio e dalla pulizia dei dialoghi al mix e alla consegna finale.</p><p class='en'>Complete audio post-production services, from dialogue editing and cleanup to mixing and final delivery.</p>
       <ul><li><span class='it'>Montaggio e pulizia dialoghi</span><span class='en'>Dialogue Editing &amp; Cleanup</span></li><li><span class='it'>Riduzione del rumore e restauro</span><span class='en'>Noise Reduction &amp; Restoration</span></li><li><span class='it'>Montaggio foley</span><span class='en'>Foley Editing</span></li><li><span class='it'>Montaggio effetti sonori</span><span class='en'>Sound Effects Editing</span></li><li><span class='it'>Montaggio musica</span><span class='en'>Music Editing</span></li><li><span class='it'>Montaggio sound design</span><span class='en'>Sound Design Editing</span></li><li><span class='it'>Missaggio finale (re-recording)</span><span class='en'>Re-recording / Final Mix</span></li><li><span class='it'>Mix stereo e surround</span><span class='en'>Stereo &amp; Surround Mixing</span></li><li><span class='it'>Loudness e consegna tecnica</span><span class='en'>Loudness &amp; Technical Delivery</span></li><li><span class='it'>Mastering e consegna finale</span><span class='en'>Final Mastering &amp; Delivery</span></li></ul>
     </div>
@@ -300,15 +317,38 @@ footer .place{ color:var(--text-dim); font-size:13px; margin-top:18px; }
       <div class="services-group">
         <div class="group-title">GAMING</div>
         <div class="service-block">
-      <h4><span class="it">MUSICA PER VIDEOGIOCHI</span><span class="en">GAME MUSIC</span></h4>
+      <div class="sb-head">
+        <svg class="svc-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <rect class="eqbar" x="6" y="18" width="6" height="16" rx="1" fill="var(--amber)"/>
+  <rect class="eqbar" x="17" y="10" width="6" height="24" rx="1" fill="var(--amber)"/>
+  <rect class="eqbar" x="28" y="22" width="6" height="12" rx="1" fill="var(--amber)"/>
+</svg>
+        <h4><span class="it">MUSICA PER VIDEOGIOCHI</span><span class="en">GAME MUSIC</span></h4>
+      </div>
       <p class='it'>Musica originale composta specificamente per videogiochi, da temi atmosferici e cinematici a musica dinamica e interattiva legata al gameplay.</p><p class='en'>Original music composed specifically for video games, from atmospheric and cinematic themes to gameplay-driven and interactive music.</p>
       <ul><li><span class='it'>Musica di gameplay e combattimento</span><span class='en'>Gameplay &amp; combat music</span></li><li><span class='it'>Musica ambientale e atmosferica</span><span class='en'>Environmental &amp; atmospheric music</span></li><li><span class='it'>Temi di personaggio e narrativi</span><span class='en'>Character &amp; narrative themes</span></li><li><span class='it'>Musica di menu e UI</span><span class='en'>Menu &amp; UI music</span></li><li><span class='it'>Loop e tracce senza soluzione di continuità</span><span class='en'>Loops and seamless tracks</span></li><li><span class='it'>Musica adattiva e interattiva</span><span class='en'>Adaptive &amp; interactive music</span></li><li><span class='it'>Transizioni musicali e sistemi dinamici</span><span class='en'>Music transitions and dynamic systems</span></li></ul>
     </div><div class="service-block">
-      <h4>SOUND DESIGN</h4>
+      <div class="sb-head">
+        <svg class="svc-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <circle cx="20" cy="20" r="3" fill="var(--teal)"/>
+  <circle class="ring r1" cx="20" cy="20" r="9" fill="none" stroke="var(--teal)" stroke-width="1.5"/>
+  <circle class="ring r2" cx="20" cy="20" r="15" fill="none" stroke="var(--teal)" stroke-width="1.5" opacity="0.6"/>
+</svg>
+        <h4>SOUND DESIGN</h4>
+      </div>
       <p class='it'>Effetti sonori su misura, pensati per dare a gameplay, ambienti, personaggi e interazioni un'identità sonora distintiva.</p><p class='en'>Custom sound effects designed to give gameplay, environments, characters and interactions a distinctive sonic identity.</p>
       <ul><li><span class='it'><b>Foley &amp; Movimento</b> — passi, vestiti, movimento del corpo e interazioni fisiche</span><span class='en'><b>Foley &amp; Movement</b> — footsteps, clothing, body movement and physical interactions</span></li><li><span class='it'><b>Ambiente &amp; Atmosfera</b> — location, meteo, natura, interni e strati atmosferici</span><span class='en'><b>Environment &amp; Ambience</b> — locations, weather, nature, interiors and atmospheric layers</span></li><li><span class='it'><b>Personaggi &amp; Creature</b> — vocalizzazioni, movimenti, abilità e suoni di creature</span><span class='en'><b>Characters &amp; Creatures</b> — vocalizations, movements, abilities and creature sounds</span></li><li><span class='it'><b>Armi &amp; Combattimento</b> — armi, impatti, esplosioni, danni e feedback di combattimento</span><span class='en'><b>Weapons &amp; Combat</b> — weapons, impacts, explosions, damage and combat feedback</span></li><li><span class='it'><b>UI &amp; Interfaccia</b> — menu, pulsanti, notifiche, inventario e feedback HUD</span><span class='en'><b>UI &amp; Interface</b> — menus, buttons, notifications, inventory and HUD feedback</span></li><li><span class='it'><b>Oggetti &amp; Interazioni</b> — porte, interruttori, macchinari, oggetti raccoglibili e interazioni ambientali</span><span class='en'><b>Objects &amp; Interactions</b> — doors, switches, machinery, pickups and environmental interactions</span></li><li><span class='it'><b>Magia &amp; Abilità</b> — incantesimi, poteri, abilità ed effetti soprannaturali</span><span class='en'><b>Magic &amp; Abilities</b> — spells, powers, abilities and supernatural effects</span></li><li><span class='it'><b>Cinematiche &amp; Narrazione</b> — eventi di trama, transizioni e sequenze scriptate</span><span class='en'><b>Cinematic &amp; Narrative</b> — story events, transitions and scripted sequences</span></li></ul>
     </div><div class="service-block">
-      <h4><span class="it">IMPLEMENTAZIONE AUDIO</span><span class="en">AUDIO IMPLEMENTATION</span></h4>
+      <div class="sb-head">
+        <svg class="svc-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <line class="wire" x1="8" y1="30" x2="20" y2="12" stroke="var(--teal)" stroke-width="1.5"/>
+  <line class="wire" x1="20" y1="12" x2="32" y2="30" stroke="var(--teal)" stroke-width="1.5"/>
+  <circle cx="8" cy="30" r="3.5" fill="var(--teal)"/>
+  <circle cx="32" cy="30" r="3.5" fill="var(--teal)"/>
+  <circle cx="20" cy="12" r="3.5" fill="var(--amber)"/>
+</svg>
+        <h4><span class="it">IMPLEMENTAZIONE AUDIO</span><span class="en">AUDIO IMPLEMENTATION</span></h4>
+      </div>
       <p class='it'>Integrazione e implementazione di musica ed effetti sonori direttamente nel motore di gioco, creando sistemi audio reattivi e interattivi.</p><p class='en'>Integration and implementation of music and sound effects directly into the game engine, creating responsive and interactive audio systems.</p>
       <ul><li><span class='it'>Unreal Engine 5</span><span class='en'>Unreal Engine 5</span></li><li><span class='it'>MetaSounds</span><span class='en'>MetaSounds</span></li><li><span class='it'>FMOD</span><span class='en'>FMOD</span></li><li><span class='it'>Wwise</span><span class='en'>Wwise</span></li><li><span class='it'>Implementazione di eventi audio</span><span class='en'>Audio event implementation</span></li><li><span class='it'>Sincronizzazione con animazioni e gameplay</span><span class='en'>Animation &amp; gameplay synchronization</span></li><li><span class='it'>Audio spaziale e attenuazione</span><span class='en'>Spatial audio &amp; attenuation</span></li><li><span class='it'>Sistemi audio interattivi e adattivi</span><span class='en'>Interactive &amp; adaptive audio systems</span></li><li><span class='it'>Mixing dinamico e stati audio</span><span class='en'>Dynamic mixing and audio states</span></li><li><span class='it'>Sistemi di randomizzazione e variazione</span><span class='en'>Randomization and variation systems</span></li></ul>
     </div>
@@ -379,8 +419,8 @@ footer .place{ color:var(--text-dim); font-size:13px; margin-top:18px; }
 
 <div class="cookiebar hidden" id="cookiebar">
   <p>
-    <span class="it">Questo sito utilizza contenuti di terze parti (player audio ReelCrafter e Spotify, embed di gioco itch.io) che possono impostare cookie tecnici e di terze parti. Puoi accettarli tutti oppure limitarti a quelli strettamente necessari al funzionamento del sito.</span>
-    <span class="en">This site uses third-party content (ReelCrafter and Spotify audio players, itch.io game embeds) that may set technical and third-party cookies. You can accept all of them or limit consent to what's strictly necessary for the site to work.</span>
+    <span class="it">Questo sito include contenuti di terze parti (player audio ReelCrafter e Spotify, embed di gioco itch.io) che possono impostare cookie tecnici e di terze parti, necessari per mostrare quei contenuti.</span>
+    <span class="en">This site includes third-party content (ReelCrafter and Spotify audio players, itch.io game embeds) that may set technical and third-party cookies, required to display that content.</span>
   </p>
   <div class="actions">
     <button class="accept-essential" onclick="cookieChoice('essential')"><span class="it">Solo necessari</span><span class="en">Essential only</span></button>
@@ -413,24 +453,15 @@ function setLang(l){
   try{ if(localStorage.getItem('ma_lang') === 'en'){ setLang('en'); } }catch(e){}
 })();
 
-/* --- cookie consent + embed gating --- */
-function loadGate(el){
-  const html = el.getAttribute('data-embed');
-  el.outerHTML = html;
-}
-function loadAllGates(){
-  document.querySelectorAll('.embed-gate').forEach(loadGate);
-}
+/* --- cookie notice (informational; does not block third-party embeds) --- */
 function cookieChoice(choice){
   try{ localStorage.setItem('ma_cookie_consent', choice); }catch(e){}
   document.getElementById('cookiebar').classList.add('hidden');
-  if(choice === 'all'){ loadAllGates(); }
 }
 (function(){
   let consent = null;
   try{ consent = localStorage.getItem('ma_cookie_consent'); }catch(e){}
-  if(consent === 'all'){ loadAllGates(); }
-  else if(consent !== 'essential'){
+  if(!consent){
     document.addEventListener('DOMContentLoaded', function(){
       document.getElementById('cookiebar').classList.remove('hidden');
     });
