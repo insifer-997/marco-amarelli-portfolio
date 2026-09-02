@@ -100,6 +100,7 @@ section{ border-top:1px solid var(--line); }
 .listen{ padding-bottom:100px; }
 .reel{ margin-bottom:36px; }
 .reel iframe{ width:100%; border-radius:4px; border:1px solid var(--panel-edge); }
+.reel-spotify iframe{ border:none; }
 
 /* --- services --- */
 .services{ padding:90px 0 110px; }
@@ -145,7 +146,7 @@ section{ border-top:1px solid var(--line); }
 }
 .window.in-view{ opacity:1; transform:translateY(0) translateX(0) rotate(0deg); }
 .window:nth-child(even){ margin-left:auto; }
-.window .cover{ width:100%; aspect-ratio:16/9; object-fit:cover; border-bottom:1px solid var(--panel-edge); }
+.window .cover{ width:100%; object-fit:cover; border-bottom:1px solid var(--panel-edge); display:block; }
 .window .titlebar{ display:flex; align-items:center; justify-content:space-between; padding:9px 14px; border-bottom:1px solid var(--panel-edge); }
 .window .titlebar .name{ font-size:11px; color:var(--text-dim); letter-spacing:.03em; }
 .window .titlebar .tc{ font-size:11px; color:var(--amber); }
@@ -160,18 +161,20 @@ section{ border-top:1px solid var(--line); }
 /* --- bio --- */
 .bio{ position:relative; padding:100px 0 110px; overflow:hidden; }
 .bio-bg{ position:absolute; inset:0; z-index:0; }
-.bio-bg img{ width:100%; height:100%; object-fit:cover; object-position:center 22%; }
-.bio-bg::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(22,21,26,.25) 0%, rgba(22,21,26,.45) 100%); }
+.bio-bg img{ width:100%; height:100%; object-fit:cover; object-position:15% 18%; }
+.bio-bg::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(22,21,26,.12) 0%, rgba(22,21,26,.3) 100%); }
 .bio .wrap{ position:relative; z-index:1; }
 .bio-panel{
-  background:rgba(22,21,26,0.74); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-  border:1px solid rgba(237,234,227,.12); border-radius:6px; padding:44px 40px;
+  background:rgba(22,21,26,0.42); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
+  border:1px solid rgba(237,234,227,.10); border-radius:6px; padding:36px 32px;
+  max-width:420px; margin-left:auto;
 }
-.bio-panel .section-label{ padding-top:0; margin-bottom:28px; }
-.bio-panel p{ font-size:16px; line-height:1.75; color:var(--text); margin:0 0 16px; }
+.bio-panel .section-label{ padding-top:0; margin-bottom:24px; }
+.bio-panel p{ font-size:15px; line-height:1.7; color:var(--text); margin:0 0 14px; text-shadow:0 1px 8px rgba(0,0,0,.35); }
 .bio-panel p:last-child{ margin-bottom:0; }
 .kw{ color:var(--amber); }
-@media (max-width:600px){ .bio-panel{ padding:28px 22px; } }
+@media (max-width:760px){ .bio-panel{ max-width:100%; margin-left:0; } .bio-bg img{ object-position:30% 15%; } }
+@media (max-width:600px){ .bio-panel{ padding:26px 20px; background:rgba(22,21,26,0.58); } }
 
 /* --- reviews --- */
 .reviews{ padding:90px 0 110px; }
@@ -261,13 +264,13 @@ const IMG = {
 };
 
 const PROJECTS = [{
-  key:'eotl', cover: IMG['eotl'], tc:'00:04:11', title:'End of the Line',
+  key:'eotl', cover: IMG['eotl'], tc:'00:04:11', title:'End of the Line', ratio:'700/393',
   role_it:'SOUND DESIGN — IMPLEMENTAZIONE AUDIO (UE5)', role_en:'SOUND DESIGN — AUDIO IMPLEMENTATION (UE5)',
   desc_it:'Videogioco realizzato per la Brackeys Game Jam 2026. Un autista di autobus vive il turno di notte più spaventoso della sua vita: fai salire i passeggeri e portali a destinazione — ma attento, non tutti sono davvero passeggeri.', desc_en:'A game made for Brackeys Game Jam 2026. A bus driver lives through the spookiest graveyard shift of his life — get the passengers safely to their stop, but watch out: not everyone boarding is really a passenger.',
   credit_html:'', embed_html:'<div class="embed"><iframe frameborder="0" src="https://itch.io/embed/4945503" width="100%" height="167"></iframe></div>'
 },
 {
-  key:'fumble', cover: IMG['fumble'], tc:'00:09:47', title:'Fumble',
+  key:'fumble', cover: IMG['fumble'], tc:'00:09:47', title:'Fumble', ratio:'670/1082',
   role_it:'MUSICA — SOUND DESIGN', role_en:'MUSIC — SOUND DESIGN',
   desc_it:"Videogioco realizzato per la Brackeys Game Jam 2026. Una dating app appena lanciata: Gracie ci prova. La aiuterai a trovare l'amore della sua vita, o troverai qualcos'altro?", desc_en:'A game made for Brackeys Game Jam 2026. A dating app just launched, and Gracie is giving it a try. Will you help her find the love of her life — or something else entirely?',
   credit_html:'', embed_html:'<div class="embed"><iframe frameborder="0" src="https://itch.io/embed/4953491" width="100%" height="167"></iframe></div>'
@@ -282,7 +285,7 @@ PROJECTS.forEach((p, i) => {
   el.style.setProperty('--rot', rot + 'deg');
   el.style.setProperty('--dx', dx + 'px');
   el.innerHTML = `
-    <img class="cover" src="${p.cover}" alt="${p.title}">
+    <img class="cover" style="aspect-ratio:${p.ratio}" src="${p.cover}" alt="${p.title}">
     <div class="titlebar">
       <span class="name mono">${p.key}.session</span>
       <span class="tc mono">${p.tc}</span>

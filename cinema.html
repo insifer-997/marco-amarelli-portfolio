@@ -100,6 +100,7 @@ section{ border-top:1px solid var(--line); }
 .listen{ padding-bottom:100px; }
 .reel{ margin-bottom:36px; }
 .reel iframe{ width:100%; border-radius:4px; border:1px solid var(--panel-edge); }
+.reel-spotify iframe{ border:none; }
 
 /* --- services --- */
 .services{ padding:90px 0 110px; }
@@ -145,7 +146,7 @@ section{ border-top:1px solid var(--line); }
 }
 .window.in-view{ opacity:1; transform:translateY(0) translateX(0) rotate(0deg); }
 .window:nth-child(even){ margin-left:auto; }
-.window .cover{ width:100%; aspect-ratio:16/9; object-fit:cover; border-bottom:1px solid var(--panel-edge); }
+.window .cover{ width:100%; object-fit:cover; border-bottom:1px solid var(--panel-edge); display:block; }
 .window .titlebar{ display:flex; align-items:center; justify-content:space-between; padding:9px 14px; border-bottom:1px solid var(--panel-edge); }
 .window .titlebar .name{ font-size:11px; color:var(--text-dim); letter-spacing:.03em; }
 .window .titlebar .tc{ font-size:11px; color:var(--amber); }
@@ -160,18 +161,20 @@ section{ border-top:1px solid var(--line); }
 /* --- bio --- */
 .bio{ position:relative; padding:100px 0 110px; overflow:hidden; }
 .bio-bg{ position:absolute; inset:0; z-index:0; }
-.bio-bg img{ width:100%; height:100%; object-fit:cover; object-position:center 22%; }
-.bio-bg::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(22,21,26,.25) 0%, rgba(22,21,26,.45) 100%); }
+.bio-bg img{ width:100%; height:100%; object-fit:cover; object-position:15% 18%; }
+.bio-bg::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(22,21,26,.12) 0%, rgba(22,21,26,.3) 100%); }
 .bio .wrap{ position:relative; z-index:1; }
 .bio-panel{
-  background:rgba(22,21,26,0.74); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-  border:1px solid rgba(237,234,227,.12); border-radius:6px; padding:44px 40px;
+  background:rgba(22,21,26,0.42); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
+  border:1px solid rgba(237,234,227,.10); border-radius:6px; padding:36px 32px;
+  max-width:420px; margin-left:auto;
 }
-.bio-panel .section-label{ padding-top:0; margin-bottom:28px; }
-.bio-panel p{ font-size:16px; line-height:1.75; color:var(--text); margin:0 0 16px; }
+.bio-panel .section-label{ padding-top:0; margin-bottom:24px; }
+.bio-panel p{ font-size:15px; line-height:1.7; color:var(--text); margin:0 0 14px; text-shadow:0 1px 8px rgba(0,0,0,.35); }
 .bio-panel p:last-child{ margin-bottom:0; }
 .kw{ color:var(--amber); }
-@media (max-width:600px){ .bio-panel{ padding:28px 22px; } }
+@media (max-width:760px){ .bio-panel{ max-width:100%; margin-left:0; } .bio-bg img{ object-position:30% 15%; } }
+@media (max-width:600px){ .bio-panel{ padding:26px 20px; background:rgba(22,21,26,0.58); } }
 
 /* --- reviews --- */
 .reviews{ padding:90px 0 110px; }
@@ -266,43 +269,43 @@ const IMG = {
 };
 
 const PROJECTS = [{
-  key:'sbb', cover: IMG['sbb'], tc:'00:04:12', title:'Storia di una bella e di una bestia',
+  key:'sbb', cover: IMG['sbb'], tc:'00:04:12', title:'Storia di una bella e di una bestia', ratio:'700/990',
   role_it:'MUSICA — SOUND DESIGN — POST-PRODUZIONE AUDIO', role_en:'MUSIC — SOUND DESIGN — AUDIO POST-PRODUCTION',
   desc_it:'Una casa tranquilla in campagna, una coppia felice, un passato nascosto e un finale che non ti aspetti.', desc_en:"A quiet house in the countryside, a happy couple, a hidden past and an ending you don't see coming.",
   credit_html:'<div class="credit"><span class="it">Regia di Simone Pascale</span><span class="en">Directed by Simone Pascale</span></div>', embed_html:''
 },
 {
-  key:'resvrgis', cover: IMG['resvrgis'], tc:'00:09:24', title:'Resvrgis',
+  key:'resvrgis', cover: IMG['resvrgis'], tc:'00:09:24', title:'Resvrgis', ratio:'700/1006',
   role_it:'SOUND DESIGN', role_en:'SOUND DESIGN',
   desc_it:'Lungometraggio horror. Una ragazza con un passato difficile cerca di riavvicinarsi al suo vecchio gruppo di amici: una gita di caccia nel bosco rivela segreti lontani e una pericolosa creatura.', desc_en:'A horror feature. A young woman with a difficult past tries to reconnect with her old friend group — a hunting trip in the woods uncovers old secrets and a dangerous creature.',
   credit_html:'<div class="credit"><span class="it">Diretto da Francesco Carnesecchi, prodotto da ILLMATIC Film Group — selezionato ad Alice nella Città (Festival del Cinema di Roma), Sitges Film Festival, Festival International du Film Fantastique de Gérardmer e Les Étranges Nuits du Cinéma 2024</span><span class="en">Directed by Francesco Carnesecchi, produced by ILLMATIC Film Group — selected at Alice nella Città (Rome Film Festival), Sitges Film Festival, Festival International du Film Fantastique de Gérardmer, and Les Étranges Nuits du Cinéma 2024</span></div>', embed_html:''
 },
 {
-  key:'lbdc', cover: IMG['lbdc'], tc:'00:14:39', title:'La bambina di Chernobyl',
+  key:'lbdc', cover: IMG['lbdc'], tc:'00:14:39', title:'La bambina di Chernobyl', ratio:'420/594',
   role_it:'SOUND DESIGN', role_en:'SOUND DESIGN',
   desc_it:'Il protagonista è un pasticcere: quando suo padre era sindaco, ogni anno arrivavano bambine da Chernobyl in fuga dalla guerra. Una di loro torna oggi, a riscoprire il proprio passato.', desc_en:'The lead is a pastry chef — years ago, when his father was mayor, girls from Chernobyl arrived each year fleeing war. One of them returns now, to rediscover her past.',
   credit_html:'<div class="credit"><span class="it">Regia di Massimo Nardin, produzione Cine1 Italia — in distribuzione in oltre 50 sale nei cinema italiani</span><span class="en">Directed by Massimo Nardin, produced by Cine1 Italia — released in over 50 Italian cinemas</span></div>', embed_html:''
 },
 {
-  key:'5anelli', cover: IMG['5anelli'], tc:'00:19:51', title:'I cinque anelli',
+  key:'5anelli', cover: IMG['5anelli'], tc:'00:19:51', title:'I cinque anelli', ratio:'700/875',
   role_it:'MUSICA — SOUND DESIGN — POST-PRODUZIONE AUDIO', role_en:'MUSIC — SOUND DESIGN — AUDIO POST-PRODUCTION',
   desc_it:"Una figlia, una storia d'amore difficile e non accettata da una madre fredda come il ghiaccio. A volte la frustrazione porta a reazioni sconsiderate, di cui ci si pente amaramente.", desc_en:'A daughter, a difficult love story her mother refuses to accept. Frustration can lead to reckless choices — the kind you bitterly regret.',
   credit_html:'<div class="credit"><span class="it">Regia di Ivano Iglio</span><span class="en">Directed by Ivano Iglio</span></div>', embed_html:''
 },
 {
-  key:'xiii', cover: IMG['xiii'], tc:'00:25:07', title:'XIII',
+  key:'xiii', cover: IMG['xiii'], tc:'00:25:07', title:'XIII', ratio:'700/1248',
   role_it:'MUSICA — SOUND DESIGN — POST-PRODUZIONE AUDIO', role_en:'MUSIC — SOUND DESIGN — AUDIO POST-PRODUCTION',
   desc_it:"Il viaggio onirico di un soldato che si ritrova nel XIII canto dell'Inferno dantesco: perso in una selva oscura, la sua mente viene straziata da presenze inquietanti.", desc_en:"The dream-journey of a soldier who finds himself in the thirteenth canto of Dante's Inferno — lost in a dark wood, his mind torn apart by unsettling presences.",
   credit_html:'<div class="credit"><span class="it">Scritto e diretto da Ivano Iglio — selezionato per l\'Intonations Festival di San Pietroburgo, dedicato interamente all\'audio</span><span class="en">Written and directed by Ivano Iglio — selected for the Intonations Festival in St. Petersburg, dedicated entirely to sound</span></div>', embed_html:''
 },
 {
-  key:'viscere', cover: IMG['viscere'], tc:'00:30:15', title:'Viscere',
+  key:'viscere', cover: IMG['viscere'], tc:'00:30:15', title:'Viscere', ratio:'700/1050',
   role_it:'MUSICA', role_en:'MUSIC',
   desc_it:"Corto d'animazione realizzato con Unreal Engine 5. Un uomo cade in uno stato onirico e, nella lotta per la vita, incontra la morte.", desc_en:'An animated short made with Unreal Engine 5. A man falls into a dream state and, fighting for his life, encounters death.',
   credit_html:'<div class="credit"><span class="it">Regia di Alessandro Barbato</span><span class="en">Directed by Alessandro Barbato</span></div>', embed_html:''
 },
 {
-  key:'hwc', cover: IMG['hwc'], tc:'00:34:40', title:'Handle with Care',
+  key:'hwc', cover: IMG['hwc'], tc:'00:34:40', title:'Handle with Care', ratio:'700/1050',
   role_it:'MUSICA', role_en:'MUSIC',
   desc_it:'Animazione realizzata con Unreal Engine 5. Una storia commovente: il legame tra due sorelle guarisce qualsiasi male.', desc_en:'An animated short made with Unreal Engine 5. A moving story about how the bond between two sisters can heal anything.',
   credit_html:'', embed_html:''
@@ -317,7 +320,7 @@ PROJECTS.forEach((p, i) => {
   el.style.setProperty('--rot', rot + 'deg');
   el.style.setProperty('--dx', dx + 'px');
   el.innerHTML = `
-    <img class="cover" src="${p.cover}" alt="${p.title}">
+    <img class="cover" style="aspect-ratio:${p.ratio}" src="${p.cover}" alt="${p.title}">
     <div class="titlebar">
       <span class="name mono">${p.key}.session</span>
       <span class="tc mono">${p.tc}</span>
