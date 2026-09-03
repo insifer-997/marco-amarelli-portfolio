@@ -146,6 +146,11 @@ section{ border-top:1px solid var(--line); }
 .service-block:hover .svc-icon .wire{ animation:wireflow 1s linear infinite; }
 @keyframes wireflow{ to{ stroke-dashoffset:-12; } }
 
+/* --- trailer embed --- */
+.trailer-block{ margin-bottom:20px; }
+.trailer-block .label{ font-size:13px; color:var(--text-dim); margin-bottom:10px; }
+.trailer-block iframe{ width:100%; aspect-ratio:16/9; border:1px solid var(--panel-edge); border-radius:4px; }
+
 /* --- projects timeline --- */
 .timeline{ padding:60px 0 120px; }
 .window{
@@ -187,19 +192,20 @@ section{ border-top:1px solid var(--line); }
 @media (max-width:760px){ .bio-panel{ max-width:100%; margin-right:0; } .bio-bg img{ object-position:65% 15%; } }
 @media (max-width:600px){ .bio-panel{ padding:26px 20px; background:rgba(22,21,26,0.36); } }
 
-/* --- reviews --- */
+/* --- reviews / contact forms --- */
 .reviews{ padding:90px 0 110px; }
-.review-form{ display:flex; flex-direction:column; gap:14px; max-width:480px; }
-.review-form input, .review-form textarea{
+.form-block{ display:flex; flex-direction:column; gap:14px; max-width:480px; }
+.form-block input, .form-block textarea{
   background:var(--panel); border:1px solid var(--panel-edge); border-radius:3px;
   color:var(--text); font-family:'Inter',sans-serif; font-size:15px; padding:12px 14px; width:100%;
 }
-.review-form textarea{ min-height:110px; resize:vertical; }
-.review-form button{
+.form-block textarea{ min-height:110px; resize:vertical; }
+.form-block button{
   align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:13px; color:#16151A;
   background:var(--amber); border:none; padding:11px 22px; border-radius:20px; cursor:pointer;
 }
-.review-note{ font-size:13px; color:var(--text-dim); margin-top:14px; max-width:480px; line-height:1.5; }
+.form-note{ font-size:13px; color:var(--text-dim); margin-top:14px; max-width:480px; line-height:1.5; }
+.contact-form-wrap{ margin-top:32px; padding-top:32px; border-top:1px solid var(--line); }
 
 /* --- footer --- */
 footer{ padding:60px 0 70px; }

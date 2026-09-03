@@ -146,6 +146,11 @@ section{ border-top:1px solid var(--line); }
 .service-block:hover .svc-icon .wire{ animation:wireflow 1s linear infinite; }
 @keyframes wireflow{ to{ stroke-dashoffset:-12; } }
 
+/* --- trailer embed --- */
+.trailer-block{ margin-bottom:20px; }
+.trailer-block .label{ font-size:13px; color:var(--text-dim); margin-bottom:10px; }
+.trailer-block iframe{ width:100%; aspect-ratio:16/9; border:1px solid var(--panel-edge); border-radius:4px; }
+
 /* --- projects timeline --- */
 .timeline{ padding:60px 0 120px; }
 .window{
@@ -187,19 +192,20 @@ section{ border-top:1px solid var(--line); }
 @media (max-width:760px){ .bio-panel{ max-width:100%; margin-right:0; } .bio-bg img{ object-position:65% 15%; } }
 @media (max-width:600px){ .bio-panel{ padding:26px 20px; background:rgba(22,21,26,0.36); } }
 
-/* --- reviews --- */
+/* --- reviews / contact forms --- */
 .reviews{ padding:90px 0 110px; }
-.review-form{ display:flex; flex-direction:column; gap:14px; max-width:480px; }
-.review-form input, .review-form textarea{
+.form-block{ display:flex; flex-direction:column; gap:14px; max-width:480px; }
+.form-block input, .form-block textarea{
   background:var(--panel); border:1px solid var(--panel-edge); border-radius:3px;
   color:var(--text); font-family:'Inter',sans-serif; font-size:15px; padding:12px 14px; width:100%;
 }
-.review-form textarea{ min-height:110px; resize:vertical; }
-.review-form button{
+.form-block textarea{ min-height:110px; resize:vertical; }
+.form-block button{
   align-self:flex-start; font-family:'IBM Plex Mono',monospace; font-size:13px; color:#16151A;
   background:var(--amber); border:none; padding:11px 22px; border-radius:20px; cursor:pointer;
 }
-.review-note{ font-size:13px; color:var(--text-dim); margin-top:14px; max-width:480px; line-height:1.5; }
+.form-note{ font-size:13px; color:var(--text-dim); margin-top:14px; max-width:480px; line-height:1.5; }
+.contact-form-wrap{ margin-top:32px; padding-top:32px; border-top:1px solid var(--line); }
 
 /* --- footer --- */
 footer{ padding:60px 0 70px; }
@@ -442,15 +448,15 @@ body.cookiebar-open .backtotop{ bottom:112px; }
     <div class="wrap">
       <h2 class="section-label mono"><span class="it">RECENSIONI</span><span class="en">REVIEWS</span></h2>
       
-<div class="review-form">
-  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+<div class="form-block">
+  <form action="https://formspree.io/f/YOUR_REVIEWS_FORM_ID" method="POST">
     <input type="text" name="name" placeholder="Nome / Name" required>
     <input type="text" name="role" placeholder="Ruolo / progetto — Role / project">
     <textarea name="review" placeholder="La tua recensione / Your review" required></textarea>
     <button type="submit" aria-label="Invia la recensione / Submit your review"><span class="it">Invia recensione</span><span class="en">Submit review</span></button>
   </form>
 </div>
-<p class="review-note">
+<p class="form-note">
   <span class="it">Le recensioni inviate vengono revisionate prima di essere pubblicate sul sito.</span>
   <span class="en">Submitted reviews are reviewed before being published on the site.</span>
 </p>
@@ -469,6 +475,23 @@ body.cookiebar-open .backtotop{ bottom:112px; }
       <div class="contact-line"><a href="tel:+393282367189">+39 328 236 7189</a></div>
       <div class="contact-line"><a href="https://www.marcoamarelli.com/" target="_blank" rel="noopener">marcoamarelli.com</a></div>
       <div class="place mono">Roma, IT</div>
+      
+<div class="contact-form-wrap">
+  <div class="form-block">
+    <form action="https://formspree.io/f/YOUR_CONTACT_FORM_ID" method="POST">
+      <input type="text" name="name" placeholder="Nome e cognome / Full name" required>
+      <input type="email" name="email" placeholder="La tua email / Your email" required>
+      <input type="text" name="subject" placeholder="Oggetto / Subject" required>
+      <textarea name="message" placeholder="Messaggio / Message" required></textarea>
+      <button type="submit" aria-label="Invia il messaggio / Send the message"><span class="it">Invia messaggio</span><span class="en">Send message</span></button>
+    </form>
+  </div>
+  <p class="form-note">
+    <span class="it">In alternativa puoi scrivere direttamente a info@marcoamarelli.com.</span>
+    <span class="en">You can also write directly to info@marcoamarelli.com.</span>
+  </p>
+</div>
+
     </div>
   </footer>
 
